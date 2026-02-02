@@ -177,7 +177,8 @@ public class World
         // and targetNearestInvader() - turns turret towards closest invader and fires, if gun recharged and invader in
         //      range.
         // TODO #4: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
-        //    (which will also fire at it, if possible)
+        //    (which will also fire at it, if possible).
+        //    NOTE: the targetting won't work until you do To do #6.
 
 
 
