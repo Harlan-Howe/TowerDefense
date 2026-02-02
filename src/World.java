@@ -128,8 +128,8 @@ public class World
      */
     public void drawInvaders(Graphics g)
     {
-        for (Invader inv: invaderList)
-            inv.drawSelf(g);
+        // TODO #0: loop through the Invader list and tell each one to drawSelf(g).
+
     }
 
     /**
@@ -138,9 +138,8 @@ public class World
      */
     public void drawShots(Graphics g)
     {
-        for (Shot s:shotList)
-            s.drawSelf((Graphics2D)g);
-        shotList.clear();
+        // TODO #1: loop through the shot list and tell each one to drawSelf(g). Then, when you are done, empty the list!
+
     }
 
     /**
@@ -149,8 +148,8 @@ public class World
      */
     public void drawTurrets(Graphics g)
     {
-        for (Turret tur: turretList)
-            tur.drawSelf(g);
+        // TODO #2: loop through the turret list and tell each one to drawSelf(g).
+
     }
 
 
@@ -169,23 +168,18 @@ public class World
 
         // loop through all the invaders and tell each one to advance(deltaT) - it returns a boolean indicating whether
         // it reached the end of the path. If so, end the game.
-        boolean anyInvaderReachedEnd = false;
-        for (Invader inv: invaderList)
-            anyInvaderReachedEnd |= inv.advance(deltaT);
-        if (anyInvaderReachedEnd)
-        {
-            System.out.println("Game over!");
-            System.exit(0);
-        }
+        // TODO #3: loop through the invader list and tell each one to advance(deltaT). Each one will return a boolean.
+        //  Based on that boolean, if any of the invaders have reached the end, print a game over message and say
+        //  System.exit(0); to end the program. (Later, you might make this nicer.)
+
 
         // tell all the turrets to advance(deltaT) - updates recharge of weapon;
         // and targetNearestInvader() - turns turret towards closest invader and fires, if gun recharged and invader in
         //      range.
-        for (Turret t: turretList)
-        {
-            t.advance(deltaT);
-            t.targetNearestInvader();
-        }
+        // TODO #4: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
+        //    (which will also fire at it, if possible)
+
+
 
         // decide whether to spawn another Invader.
         if (Math.random() < SPAWN_LIKELIHOOD)
@@ -232,14 +226,8 @@ public class World
     public void addTurret(Turret newTurret, int x, int y)
     {
         // remove any turrets in turretList that are already at x, y.
-        for (int i=turretList.size()-1; i>=0; i-- )
-        {
-            int[] loc = turretList.get(i).getMyLoc();
-            if (x==loc[0] && y==loc[1])
-            {
-                turretList.remove(i);
-            }
-        }
+        // TODO #5: loop through the turret list and remove any turrets that are at (x,y).
+        //  (Now if you drop a turret on top of another one, it should replace the old one.)
 
         // append this turret to the turretList, and set its location to (x,y).
         turretList.add(newTurret);
