@@ -133,12 +133,14 @@ public class World
     }
 
     /**
-     * tell all the shots to draw themselves, and then clear the list, so they are only drawn once.
+     * tell all the shots to draw themselves. Afterwards, if any of the shots have been drawn twice, (i.e., multiple
+     * cycles of this method), delete them from the shot list. (Note that Shot has an accessor Method, getShotsDrawn().)
      * @param g - the Graphics object that indicates where on the screen to draw and the tools to do it.
      */
     public void drawShots(Graphics g)
     {
-        // TODO #1: loop through the shot list and tell each one to drawSelf(g). Then, when you are done, empty the list!
+        // TODO #1: loop through the shot list and tell each one to drawSelf(g). Then, when you are done, remove any
+        //          shots that have been drawn twice.
 
     }
 
