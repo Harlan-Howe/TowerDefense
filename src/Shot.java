@@ -6,6 +6,7 @@ public class Shot
     private Color myColor;
     private static Stroke shotThickLine;
     private static Stroke thinLine;
+    private int framesDrawn;
 
     public Shot(int[] gunLoc, double[] invaderLoc, Color color)
     {
@@ -19,6 +20,7 @@ public class Shot
             shotThickLine = new BasicStroke(2);
             thinLine = new BasicStroke(1);
         }
+        framesDrawn = 0;
     }
 
     public void drawSelf(Graphics2D g)
@@ -27,6 +29,8 @@ public class Shot
         g.setColor(myColor);
         g.drawLine(pt1[0],pt1[1],pt2[0],pt2[1]);
         g.setStroke(thinLine);
+        framesDrawn++;
     }
 
+    public int getFramesDrawn() {return framesDrawn;}
 }
