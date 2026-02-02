@@ -163,20 +163,15 @@ public class Turret
     {
         ArrayList<Invader> invaders = myWorld.getInvaderList();
 
-        // identify which invader is nearest to this gun.
-        double nearestDist2 = 999999;
-        Invader nearestInv = null;
-        for (Invader inv:invaders)
-        {
-            double[] invLoc = inv.getLoc();
 
-            double d2 = Math.pow(invLoc[0]-myLoc[0],2) + Math.pow(invLoc[1]-myLoc[1],2);
-            if (d2 < nearestDist2)
-            {
-                nearestDist2 = d2;
-                nearestInv = inv;
-            }
-        }
+        // identify which invader is nearest to this gun.
+        // TODO #6: loop through all the invaders and identify which one is the nearest to this turret, and what that
+        //  distance-squared is.
+        double nearestDist2 = 1;  // obviously not right. This is the distance squared to the nearest turret.
+        Invader nearestInv = null;
+
+
+
         // if we've identified a nearest invader and it is within range...
         if (nearestInv != null && (nearestDist2 < Math.pow(myRange,2)))
         {
