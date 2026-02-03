@@ -203,7 +203,8 @@ public class World
             if (inv.isDead())
             {
                 myParent.turretKilledInvader(inv.getType());
-                invaderList.remove(inv);
+                // TODO #5: delete the invader from the list of invaders.
+
             }
         }
     }
@@ -228,10 +229,10 @@ public class World
     public void addTurret(Turret newTurret, int x, int y)
     {
         // remove any turrets in turretList that are already at x, y.
-        // TODO #5: loop through the turret list and remove any turrets that are at (x,y).
+        // TODO #6: loop through the turret list and remove any turrets that are at (x,y).
         //  (Now if you drop a turret on top of another one, it should replace the old one.)
 
-        // TODO #5a: append this turret to the turretList, and set its location to (x,y).
+        // TODO #6a: append this turret to the turretList, and set its location to (x,y).
 
     }
 }

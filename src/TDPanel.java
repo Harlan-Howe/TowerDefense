@@ -70,7 +70,7 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
             int destX = 20+(e.getX()/40)*40;
             int destY = 20+(e.getY()/40)*40;
             int[][] path = myWorld.getPath();
-            // TODO #6: this is about arrays, but is good practice... loop through the (x,y) locations in the path. If
+            // TODO #8: this is about arrays, but is good practice... loop through the (x,y) locations in the path. If
             //       any of these (x,y) values match the destX, destY, call "myParent.overrideStatusMessage" with an
             //       explanation that you can't drop the turret here, and return from this method immediately, without
             //       adding a turret or changing the status..

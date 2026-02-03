@@ -165,7 +165,7 @@ public class Turret
 
 
         // identify which invader is nearest to this gun.
-        // TODO #6: loop through all the invaders and identify which one is the nearest to this turret, and what that
+        // TODO #7: loop through all the invaders and identify which one is the nearest to this turret, and what that
         //  distance-squared is.
         double nearestDist2 = 1;  // obviously not right. This is the distance squared to the nearest turret.
         Invader nearestInv = null;
