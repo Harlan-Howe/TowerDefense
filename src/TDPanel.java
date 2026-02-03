@@ -70,14 +70,13 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
             int destX = 20+(e.getX()/40)*40;
             int destY = 20+(e.getY()/40)*40;
             int[][] path = myWorld.getPath();
-            for (int[] trackLoc: path)
-            {
-                if (destX == trackLoc[0] && destY == trackLoc[1])
-                {
-                    myParent.overrideStatusMessage("You cannot place the turret on the path.");
-                    return;
-                }
-            }
+            // TODO #6: this is about arrays, but is good practice... loop through the (x,y) locations in the path. If
+            //       any of these (x,y) values match the destX, destY, call "myParent.overrideStatusMessage" with an
+            //       explanation that you can't drop the turret here, and return from this method immediately, without
+            //       adding a turret or changing the status..
+
+
+
             myWorld.addTurret(currentTurret, destX, destY);
             status = TDFrame.STATUS_WAITING;
             myParent.setStatus(TDFrame.STATUS_WAITING);
@@ -104,10 +103,15 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
     }
 
     @Override
+    /**
+     * responds to any time the mouse moves within this pane. When we are in STATUS_PLACING, the location of the current
+     * turret should be updated to match the mouse, but locked to 40 x 40 gridsquares.
+     */
     public void mouseMoved(MouseEvent e)
     {
         if ((TDFrame.STATUS_PLACING== status) && (null != currentTurret ))
         {
+            // Note: "e.getX()/40" is integer division, so it yields an integer, even if we're about to multiply by 40!
             currentTurret.setMyLoc(20+(e.getX()/40)*40, 20+(e.getY()/40)*40);
             repaint();
         }
@@ -116,7 +120,7 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
     public void startRun()
     {
         myThread.restart();
-        myWorld.spawnInvader();
+        myWorld.spawnInvader(); // Begin the run with at least one invader.
         status = TDFrame.STATUS_RUNNING;
     }
 
@@ -164,6 +168,10 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
             }
         }
 
+        /**
+         * resets the value of "start" to the present when the user begins a run... otherwise, the first deltaT would
+         * be huge!
+         */
         public void restart()
         {
             start = System.currentTimeMillis();
