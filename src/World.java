@@ -113,13 +113,12 @@ public class World
      */
     public void drawPath(Graphics g)
     {
-        for (int[] pt:path)
-        {
-            g.setColor(Color.WHITE);
-            g.fillRect(pt[0] - 20, pt[1] - 20, 40, 40);
-            g.setColor(Color.BLACK);
-            g.drawRect(pt[0] - 20, pt[1] - 20, 40, 40);
-        }
+        // TODO #-1: Loop through all the (x,y) pairs in path. (See line 7.)  For each one, fill in a 40 x box centered
+        //  on (x,y) in  white and draw (outline) the same box in black. To do this, you'll need the following:
+        //     g.setColor(Color.NAME_OF_COLOR)
+        //     g.fillRect(left, top, width, height)
+        //     g.drawRect(left, top, width, height)
+
     }
 
     /**
