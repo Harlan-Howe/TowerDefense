@@ -231,8 +231,7 @@ public class World
         // TODO #5: loop through the turret list and remove any turrets that are at (x,y).
         //  (Now if you drop a turret on top of another one, it should replace the old one.)
 
-        // append this turret to the turretList, and set its location to (x,y).
-        turretList.add(newTurret);
-        newTurret.setMyLoc(x, y);
+        // TODO #5a: append this turret to the turretList, and set its location to (x,y).
+
     }
 }
