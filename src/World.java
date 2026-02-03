@@ -179,7 +179,7 @@ public class World
         //      range.
         // TODO #4: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
         //    (which will also fire at it, if possible).
-        //    NOTE: the targetting won't work until you do To do #6.
+        //    NOTE: the targetting won't work until you do To do #7.
 
 
 
