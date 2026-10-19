@@ -126,7 +126,8 @@ public class World
      */
     public void drawPath(Graphics g)
     {
-        // TODO #2: Loop through all the (x,y) pairs in the current level's path. (See line 7.)  For each one, fill in
+        ArrayList<Coordinates> path = this.getCurrentPath();
+        // TODO #2: Loop through all the (x,y) pairs in the current level's path. For each one, fill in
         //  a CELL_SIZE x CELL_SIZE box centered on (x,y) in  white and draw (outline) the same box in black. To do this,
         //  you'll need the following:
         //     g.setColor(Color.NAME_OF_COLOR)
@@ -246,7 +247,7 @@ public class World
         // TODO #9: loop through the turret list and remove any turrets that are at (x,y).
         //  (Now if you drop a turret on top of another one, it should replace the old one.)
 
-        // TODO #6a: append this turret to the turretList, and set its location to (x,y).
+        // TODO #9a: append this turret to the turretList, and set its location to (x,y).
 
     }
 }
