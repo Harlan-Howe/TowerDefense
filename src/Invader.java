@@ -87,7 +87,7 @@ public class Invader
             loc[1] += frac * (nextY-loc[1]);
         }
 
-        result =  new Coordinates(loc[0], loc[1]);
+        result =  new Coordinates((int)loc[0], (int)loc[1]);
          */
         return result;
     }
