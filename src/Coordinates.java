@@ -1,6 +1,6 @@
 public class Coordinates
 {
-    private  double x, y; // once you have your constructor, these might be "final."
+    private  int x, y; // once you have your constructor, these might be "final."
 
     // TODO #0: write the rest of this simple class!
 
