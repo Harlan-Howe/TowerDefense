@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 public class TDPanel extends JPanel implements MouseListener, MouseMotionListener
 {
@@ -36,7 +37,7 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
     {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        g.drawString("Level: "+myWorld.getCurrentLevel(), 10, 10);
+        g.drawString("Level: "+myWorld.getCurrentLevelNum(), 10, 10);
         myWorld.drawPath(g);
         myWorld.drawShots(g);
         myWorld.drawInvaders(g);
@@ -67,15 +68,14 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
     {
         if ((TDFrame.STATUS_PLACING == status) && (null != currentTurret))
         {
-            int destX = 20+(e.getX()/40)*40;
-            int destY = 20+(e.getY()/40)*40;
-            int[][] path = myWorld.getPath();
-            // TODO #8: this is about arrays, but is good practice... loop through the (x,y) locations in the path. If
+            // Rounding to centered multiples of World.CELL_SIZE.
+            int destX = World.CELL_SIZE/2 + (e.getX()/ World.CELL_SIZE)*World.CELL_SIZE;
+            int destY = World.CELL_SIZE/2 + (e.getY()/ World.CELL_SIZE)*World.CELL_SIZE;
+            ArrayList<Coordinates> path = myWorld.getCurrentPath();
+            // TODO #11: Loop through the (x,y) locations in the path. If
             //       any of these (x,y) values match the destX, destY, call "myParent.overrideStatusMessage" with an
             //       explanation that you can't drop the turret here, and return from this method immediately, without
             //       adding a turret or changing the status..
-
-
 
             myWorld.addTurret(currentTurret, destX, destY);
             status = TDFrame.STATUS_WAITING;
@@ -158,7 +158,7 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
                 try
                 {
                     //noinspection BusyWait
-                    Thread.sleep(25); // wait a quarter second before you consider running again.
+                    Thread.sleep(25); // wait a 1/40th second before you consider running again.
                 } catch (InterruptedException iExp)
                 {
                     System.out.println("AnimationThread was interrupted.");

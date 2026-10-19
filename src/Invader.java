@@ -11,16 +11,17 @@ public class Invader
                                // between square 2 and square 3.
     private static Image[] invaderImages = null;
 
-    // default speeds and hit points for the various types of invader.
-    private final static double[] speeds = {1.0, 1.5, 0.5};
-    private final static int[] healths = {100, 125, 225};
 
+    public final static int NUM_INVADER_TYPES = 3;
+    // default speeds and hit points for the various types of invader.
+    private final static double[] SPEEDS = {1.0, 1.5, 0.5};
+    private final static int[] HEALTHS = {100, 125, 225};
     public final static int[] REWARDS = {25, 35, 45};
 
     public Invader(int myType, World myWorld)
     {
-        this.mySpeed = speeds[myType];
-        this.myHealth = healths[myType];
+        this.mySpeed = SPEEDS[myType];
+        this.myHealth = HEALTHS[myType];
         this.myType = myType;
         this.myWorld = myWorld;
         myProgress = 0.0;
@@ -63,29 +64,32 @@ public class Invader
      * calculates where (in pixels) this invader is, based on its progress and the location of the path squares.
      * @return an array of (x, y) doubles.
      */
-    public double[] getLoc()
+    public Coordinates getLoc()
     {
         double[] loc = new double[2];
         int latestBase = (int)myProgress;
         double frac = myProgress - latestBase;
+        Coordinates result = new Coordinates();  // TODO #0a: remove the "= new Coordinates()" once you've made Coordinates.
 
+        // TODO #0b: Activate the following once you have written Coordinates.
+        /*
+        ArrayList<Coordinates> path = myWorld.getCurrentPath();
+        loc[0] = path.get(latestBase).getX();
+        loc[1] = path.get(latestBase).getY();
 
-        if (latestBase < myWorld.getPath().length-1)
+        if (latestBase < path.size()-1)
         {
-            loc[0] = myWorld.getPath()[latestBase][0];
-            loc[1] = myWorld.getPath()[latestBase][1];
+
             int nextX = myWorld.getPath()[latestBase+1][0];
             int nextY = myWorld.getPath()[latestBase+1][1];
 
             loc[0] += frac * (nextX-loc[0]);
             loc[1] += frac * (nextY-loc[1]);
         }
-        else
-        {
-            loc[0] = myWorld.getPath()[latestBase][0];
-            loc[1] = myWorld.getPath()[latestBase][1];
-        }
-        return loc;
+
+        result =  new Coordinates(loc[0], loc[1]);
+         */
+        return result;
     }
 
     /**
@@ -94,10 +98,13 @@ public class Invader
      */
     public void drawSelf(Graphics g)
     {
-        double[] loc = getLoc();
-        g.drawImage(invaderImages[myType], (int)loc[0]-18, (int)loc[1]-18, null);
+        // TODO #0c: Activate this once you have written Coordinates.
+        /*
+        Coordinates loc = getLoc();
+        g.drawImage(invaderImages[myType], (int)loc.getX()-18, (int)loc.getY()-18, null);
         g.setColor(Color.RED);
-        g.fillRect((int)(loc[0]-16), (int)(loc[1]-18), myHealth*32/healths[myType], 2);
+        g.fillRect((int)(loc.getX()-16), (int)(loc.getY()-18), myHealth*32/healths[myType], 2);
+         */
     }
 
     /**
@@ -108,7 +115,7 @@ public class Invader
     public boolean advance(double deltaT)
     {
         myProgress += deltaT * mySpeed;
-        return myProgress >= myWorld.getPath().length;
+        return myProgress >= myWorld.getCurrentPath().size();
     }
 
     public void takeDamage(int damage) {myHealth -= damage;}

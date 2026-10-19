@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class World
 {
-    // location of the boxes' centers. Note each box is 40 x 40, so they differ by 40.
-    private int[][] path = {{20, 380}, {60, 380}, {100, 380}, {100, 340}, {100, 300}, {100, 260}, {100, 220},
-        {100, 180}, {100, 140}, {140, 140}, {180, 140}, {220, 140}, {260, 140}, {260, 180}, {260, 220}, {260, 260},
-            {220, 260}, {180, 260}, {180, 300}, {180, 340}, {180, 380}, {180, 420}, {180, 460}, {140, 460}, {100, 460}};
+    // location of the boxes' centers. Note each box is CELL_SIZE x CELL_SIZE, so they differ by CELL_SIZE.
+    private ArrayList<Coordinates> path;
+
 
     private final ArrayList<Invader> invaderList;
     private final ArrayList<Turret> turretList;
@@ -14,11 +13,14 @@ public class World
     private final TDPanel myParent;
 
     // how many of each type of invader per level?
-    private final int[][] levels = {{4, 3, 2}, {6, 1, 3}, {8, 3, 5}, {0, 0, 6}, {15, 5, 5}};
+    private final ArrayList<Level> levels;
 
     // this will start as a copy of the count of invaders per level and will decrease as invaders spawn.
     private int[] spawnList;
     private final double SPAWN_LIKELIHOOD = 0.01;
+    private final static int NUM_LEVELS = 1;
+
+    public final static int CELL_SIZE = 40;
 
     private int currentLevel;
 
@@ -26,6 +28,8 @@ public class World
     public World(TDPanel parent)
     {
         myParent = parent;
+        levels = new ArrayList<>();
+        loadLevels();
         invaderList = new ArrayList<Invader>();
 
         turretList = new ArrayList<Turret>();
@@ -35,15 +39,19 @@ public class World
         initializeLevel();
     }
 
+    public void loadLevels()
+    {
+        for (int i=0; i<NUM_LEVELS; i++)
+            levels.add(new Level(i));
+    }
+
     /**
      * copy the values of levels for the currentLevel into spawnList. This tells the computer how many of each type of
      * Invader to make before the level is over.
      */
     public void initializeLevel()
     {
-        spawnList = new int[levels[currentLevel].length];
-        for (int i=0; i< levels[currentLevel].length; i++)
-            spawnList[i] = levels[currentLevel][i];
+        spawnList = levels.get(currentLevel).getStartingEnemyCounts();
     }
 
     /**
@@ -60,7 +68,12 @@ public class World
         }
     }
 
-    public int getCurrentLevel() {return currentLevel;}
+    public int getCurrentLevelNum() {return currentLevel;}
+
+    public ArrayList<Coordinates> getCurrentPath()
+    {
+        return levels.get(currentLevel).getPath();
+    }
 
     /**
      * create a new Invader, based on the number of Invaders yet to spawn and add it to the Invader list, if there
@@ -113,8 +126,9 @@ public class World
      */
     public void drawPath(Graphics g)
     {
-        // TODO #-1: Loop through all the (x,y) pairs in path. (See line 7.)  For each one, fill in a 40 x box centered
-        //  on (x,y) in  white and draw (outline) the same box in black. To do this, you'll need the following:
+        // TODO #2: Loop through all the (x,y) pairs in the current level's path. (See line 7.)  For each one, fill in
+        //  a CELL_SIZE x CELL_SIZE box centered on (x,y) in  white and draw (outline) the same box in black. To do this,
+        //  you'll need the following:
         //     g.setColor(Color.NAME_OF_COLOR)
         //     g.fillRect(left, top, width, height)
         //     g.drawRect(left, top, width, height)
@@ -127,7 +141,7 @@ public class World
      */
     public void drawInvaders(Graphics g)
     {
-        // TODO #0: loop through the Invader list and tell each one to drawSelf(g).
+        // TODO #3: loop through the Invader list and tell each one to drawSelf(g).
 
     }
 
@@ -138,7 +152,7 @@ public class World
      */
     public void drawShots(Graphics g)
     {
-        // TODO #1: loop through the shot list and tell each one to drawSelf(g). Then, when you are done, remove any
+        // TODO #4: loop through the shot list and tell each one to drawSelf(g). Then, when you are done, remove any
         //          shots that have been drawn twice.
 
     }
@@ -149,12 +163,12 @@ public class World
      */
     public void drawTurrets(Graphics g)
     {
-        // TODO #2: loop through the turret list and tell each one to drawSelf(g).
+        // TODO #5: loop through the turret list and tell each one to drawSelf(g).
 
     }
 
 
-    public int[][] getPath() { return path;}
+//    public int[][] getPath() { return path;}
 
     public ArrayList<Invader> getInvaderList() {return invaderList;}
 
@@ -169,7 +183,7 @@ public class World
 
         // loop through all the invaders and tell each one to advance(deltaT) - it returns a boolean indicating whether
         // it reached the end of the path. If so, end the game.
-        // TODO #3: loop through the invader list and tell each one to advance(deltaT). Each one will return a boolean.
+        // TODO #6: loop through the invader list and tell each one to advance(deltaT). Each one will return a boolean.
         //  Based on that boolean, if any of the invaders have reached the end, print a game over message and say
         //  System.exit(0); to end the program. (Later, you might make this nicer.)
 
@@ -177,7 +191,7 @@ public class World
         // tell all the turrets to advance(deltaT) - updates recharge of weapon;
         // and targetNearestInvader() - turns turret towards closest invader and fires, if gun recharged and invader in
         //      range.
-        // TODO #4: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
+        // TODO #7: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
         //    (which will also fire at it, if possible).
         //    NOTE: the targetting won't work until you do To do #7.
 
@@ -203,7 +217,7 @@ public class World
             if (inv.isDead())
             {
                 myParent.turretKilledInvader(inv.getType());
-                // TODO #5: delete the invader from the list of invaders.
+                // TODO #8: delete the invader from the list of invaders.
 
             }
         }
@@ -229,7 +243,7 @@ public class World
     public void addTurret(Turret newTurret, int x, int y)
     {
         // remove any turrets in turretList that are already at x, y.
-        // TODO #6: loop through the turret list and remove any turrets that are at (x,y).
+        // TODO #9: loop through the turret list and remove any turrets that are at (x,y).
         //  (Now if you drop a turret on top of another one, it should replace the old one.)
 
         // TODO #6a: append this turret to the turretList, and set its location to (x,y).

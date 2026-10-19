@@ -10,7 +10,7 @@ public class Turret
 
     private World myWorld; // a pointer to the world where this turret will live.
     private double myTimeSinceLastFire;
-    private int[] myLoc;
+    private Coordinates myLoc;
     private double myGunAngle;
 
     // constants for the class, not the individual turret. (i.e., static variables)
@@ -36,9 +36,9 @@ public class Turret
         resetTimer();
 
         // start this turret offscreen.
-        myLoc = new int[2];
-        myLoc[0] = -100;
-        myLoc[1] = -100;
+        
+        // TODO #0g: Activate this once you have written Coordinates.
+        //myLoc = new Coordinates(-100,-100);
 
         // the gun starts pointing east.
         myGunAngle = 0;
@@ -52,17 +52,17 @@ public class Turret
         }
     }
 
-    public int[] getMyLoc() {return myLoc;}
+    public Coordinates getMyLoc() {return myLoc;}
 
-    public void setMyLoc(int[] myLoc)
+    public void setMyLoc(Coordinates myLoc)
     {
         this.myLoc = myLoc;
     }
 
     public void setMyLoc(int x, int y)
     {
-        myLoc[0] = x;
-        myLoc[1] = y;
+        // TODO #0h: Activate this once you have written Coordinates.
+//        myLoc = new Coordinates(x,y);
     }
 
     /**
@@ -78,34 +78,39 @@ public class Turret
      */
     public void drawSelf(Graphics g)
     {
+
+        // TODO #0i: activate this code once you have written Coordinates.
+        /*
+
         // Note: we sometimes cast "g" as a "Graphics2D" object, so we can use stroke commands to make the lines thicker.
         // most of the time in modern programs, g really is an instance of this subclass of Graphics, so it works!
         switch (myType)
         {
             case 0:
                 g.setColor(Color.BLACK);
-                g.drawOval(myLoc[0]-18, myLoc[1]-18, 36, 36);
-                g.drawLine(myLoc[0]-12, myLoc[1]-12, myLoc[0]+12, myLoc[1]+12);
-                g.drawLine(myLoc[0]-12, myLoc[1]+12, myLoc[0]+12, myLoc[1]-12);
+                g.drawOval(myLoc.getX()-18, myLoc.getY()-18, 36, 36);
+                g.drawLine(myLoc.getX()-12, myLoc.getY()-12, myLoc.getX()+12, myLoc.getY()+12);
+                g.drawLine(myLoc.getX()-12, myLoc.getY()+12, myLoc.getX()+12, myLoc.getY()-12);
                 break;
             case 1:
                 g.setColor(Color.BLACK);
                 ((Graphics2D)g).setStroke(thickLine); // use a thicker pen.
-                g.drawOval(myLoc[0]-18, myLoc[1]-18, 36, 36);
-                g.drawLine(myLoc[0]-12, myLoc[1]-12, myLoc[0]+12, myLoc[1]+12);
-                g.drawLine(myLoc[0]-12, myLoc[1]+12, myLoc[0]+12, myLoc[1]-12);
+                g.drawOval(myLoc.getX()-18, myLoc.getY()-18, 36, 36);
+                g.drawLine(myLoc.getX()-12, myLoc.getY()-12, myLoc.getX()+12, myLoc.getY()+12);
+                g.drawLine(myLoc.getX()-12, myLoc.getY()+12, myLoc.getX()+12, myLoc.getY()-12);
                 ((Graphics2D)g).setStroke(thinLine); // restore the pen to thin for the next thing we draw.
                 break;
             case 2:
             default:
                 g.setColor(Color.BLACK);
-                int[] x_vals = {myLoc[0]-18, myLoc[0]-9, myLoc[0]+9, myLoc[0]+18,
-                myLoc[0]+9, myLoc[0]-9, myLoc[0]-18};
-                int[] y_vals = {myLoc[1], myLoc[1]-18, myLoc[1]-18, myLoc[1], myLoc[1]+18, myLoc[1]+18, myLoc[1]};
+                int[] x_vals = {myLoc.getX()-18, myLoc.getX()-9, myLoc.getX()+9, myLoc.getX()+18,
+                myLoc.getX()+9, myLoc.getX()-9, myLoc.getX()-18};
+                int[] y_vals = {myLoc.getY(), myLoc.getY()-18, myLoc.getY()-18, myLoc.getY(), myLoc.getY()+18, myLoc.getY()+18, myLoc.getY()};
                 g.drawPolygon(x_vals, y_vals, 7);
                 for (int i=0; i<3; i++)
                     g.drawLine(x_vals[i], y_vals[i], x_vals[i+3], y_vals[i+3]);
         }
+         */
 
         // draw the circle indicating the state of this gun's charge
         drawRecharge((Graphics2D)g);
@@ -120,19 +125,22 @@ public class Turret
      */
     private void drawRecharge(Graphics2D g)
     {
+        // TODO #0j: Activate this code once you have written Coordinates.
+        /*
         g.setStroke(thickLine);
         if (myTimeSinceLastFire >= myRechargeTime)
         {
             g.setColor(Color.RED);
-            g.drawOval(myLoc[0]-7, myLoc[1]-7, 14, 14);
+            g.drawOval(myLoc.getX()-7, myLoc.getY()-7, 14, 14);
         }
         else
         {
             int angle = (int)( 360 * myTimeSinceLastFire/ myRechargeTime);
             g.setColor(new Color(255, 255-255*angle/720, 0));
-            g.drawArc(myLoc[0]-7, myLoc[1]-7, 14, 14, 0, angle);
+            g.drawArc(myLoc.getX()-7, myLoc.getY()-7, 14, 14, 0, angle);
         }
         g.setStroke(thinLine);
+         */
     }
 
     /**
@@ -141,10 +149,13 @@ public class Turret
      */
     private void drawGun(Graphics2D g)
     {
+        // TODO #0k: Activate this code once you have written Coordinates.
+        /*
         g.setColor(Color.BLACK);
         g.setStroke(gunLine);
-        g.drawLine(myLoc[0],myLoc[1],(int)(myLoc[0]+20*Math.cos(myGunAngle)), (int)(myLoc[1]+20*Math.sin(myGunAngle)));
+        g.drawLine(myLoc.getX(),myLoc.getY(),(int)(myLoc.getX()+20*Math.cos(myGunAngle)), (int)(myLoc.getY()+20*Math.sin(myGunAngle)));
         g.setStroke(thinLine);
+         */
     }
 
     /**
@@ -165,20 +176,21 @@ public class Turret
 
 
         // identify which invader is nearest to this gun.
-        // TODO #7: loop through all the invaders and identify which one is the nearest to this turret, and what that
+        // TODO #10: loop through all the invaders and identify which one is the nearest to this turret, and what that
         //  distance-squared is.
         double nearestDist2 = 1;  // obviously not right. This is the distance squared to the nearest turret.
         Invader nearestInv = null;
 
 
-
+        // TODO #0l: Activate this code once you have written Coordinates.
+        /*
         // if we've identified a nearest invader and it is within range...
         if (nearestInv != null && (nearestDist2 < Math.pow(myRange,2)))
         {
 
             // point the gun at this nearest invader.
             double[] invLoc = nearestInv.getLoc();
-            myGunAngle = Math.atan2(nearestInv.getLoc()[1]-myLoc[1],nearestInv.getLoc()[0]-myLoc[0]);
+            myGunAngle = Math.atan2(nearestInv.getLoc()[1]-myLoc.getY(),nearestInv.getLoc()[0]-myLoc.getX());
 
             // if my gun is charged, fire at the invader!
             if (myTimeSinceLastFire >= myRechargeTime)
@@ -188,5 +200,7 @@ public class Turret
                 myTimeSinceLastFire = 0; // and the gun now needs to recharge.
             }
         }
+
+         */
     }
 }
