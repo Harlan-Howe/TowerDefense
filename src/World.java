@@ -230,7 +230,7 @@ public class World
      * @param invLoc - the location of the center of the invader
      * @param col - the color of this shot.
      */
-    public void addShot(int[] turretLoc, double[] invLoc, Color col)
+    public void addShot(Coordinates turretLoc, Coordinates invLoc, Color col)
     {
         shotList.add(new Shot(turretLoc, invLoc, col));
     }
