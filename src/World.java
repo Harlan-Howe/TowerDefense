@@ -56,7 +56,7 @@ public class World
 
         // TODO #1: open up a file (e.g. "TowerDefense.tsv") and read in the information about the number of levels,
         //  the starting enemy counts for each level, and the path.
-        //  SERIOUSLY: Read the google doc instructions, or this won't make any sense!
+        //  SERIOUSLY: Read the Google doc instructions, or this won't make any sense!
 
         // note that the number of invader types is Invader.NUM_INVADER_TYPES - I suggest you use this constant, instead
         //     of hard-coding in "3," in case you decide to change this.
