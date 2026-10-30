@@ -189,8 +189,8 @@ public class Turret
         {
 
             // point the gun at this nearest invader.
-            double[] invLoc = nearestInv.getLoc();
-            myGunAngle = Math.atan2(nearestInv.getLoc()[1]-myLoc.getY(),nearestInv.getLoc()[0]-myLoc.getX());
+            Coordinates invLoc = nearestInv.getLoc();
+            myGunAngle = Math.atan2(nearestInv.getLoc().getY()-myLoc.getY(),nearestInv.getLoc().getX()-myLoc.getX());
 
             // if my gun is charged, fire at the invader!
             if (myTimeSinceLastFire >= myRechargeTime)
