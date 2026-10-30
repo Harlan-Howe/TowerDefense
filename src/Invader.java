@@ -73,15 +73,15 @@ public class Invader
 
         // TODO #0b: Activate the following once you have written Coordinates.
         /*
-        ArrayList<Coordinates> path = myWorld.getCurrentPath();
+        ArrayList<Coordinates> path = myWorld.getPath();
         loc[0] = path.get(latestBase).getX();
         loc[1] = path.get(latestBase).getY();
 
         if (latestBase < path.size()-1)
         {
 
-            int nextX = myWorld.getPath()[latestBase+1][0];
-            int nextY = myWorld.getPath()[latestBase+1][1];
+            int nextX = path.get(latestBase+1).getX();
+            int nextY = path.get(latestBase+1).getY();
 
             loc[0] += frac * (nextX-loc[0]);
             loc[1] += frac * (nextY-loc[1]);
@@ -103,7 +103,7 @@ public class Invader
         Coordinates loc = getLoc();
         g.drawImage(invaderImages[myType], (int)loc.getX()-18, (int)loc.getY()-18, null);
         g.setColor(Color.RED);
-        g.fillRect((int)(loc.getX()-16), (int)(loc.getY()-18), myHealth*32/healths[myType], 2);
+        g.fillRect((int)(loc.getX()-16), (int)(loc.getY()-18), myHealth*32/HEALTHS[myType], 2);
          */
     }
 
