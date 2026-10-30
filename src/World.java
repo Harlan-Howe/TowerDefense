@@ -42,6 +42,7 @@ public class World
         //TODO # 0d: Once you have created a Coordinates class, you can activate this section of temporary code to see a few
         // path elements onscreen. HOWEVER... this is just TEMPORARY.
         /*
+        int[] counts = new int[3];
         path.add(new Coordinates(20,380));
         path.add(new Coordinates(60,380));
         path.add(new Coordinates(100,380));
