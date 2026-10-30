@@ -115,7 +115,7 @@ public class Invader
     public boolean advance(double deltaT)
     {
         myProgress += deltaT * mySpeed;
-        return myProgress >= myWorld.getCurrentPath().size();
+        return myProgress >= myWorld.getPath().size();
     }
 
     public void takeDamage(int damage) {myHealth -= damage;}

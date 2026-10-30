@@ -17,8 +17,7 @@ public class World
     // this will start as a copy of the count of invaders per level and will decrease as invaders spawn.
     private int[] spawnList;
     private final double SPAWN_LIKELIHOOD = 0.01;
-    private final static int NUM_LEVELS = 1;
-
+    private int numLevels;
     public final static int CELL_SIZE = 40;
 
     private int currentLevel;
@@ -57,7 +56,7 @@ public class World
 
         // TODO #1: open up a file (e.g. "TowerDefense.tsv") and read in the information about the number of levels,
         //  the starting enemy counts for each level, and the path.
-        //  SERIOUSLY: Read the google doc instructions.
+        //  SERIOUSLY: Read the google doc instructions, or this won't make any sense!
 
         // note that the number of invader types is Invader.NUM_INVADER_TYPES - I suggest you use this constant, instead
         //     of hard-coding in "3," in case you decide to change this.
@@ -89,7 +88,7 @@ public class World
 
     public int getCurrentLevelNum() {return currentLevel;}
 
-    public ArrayList<Coordinates> getCurrentPath()
+    public ArrayList<Coordinates> getPath()
     {
         return path;
     }
@@ -145,8 +144,7 @@ public class World
      */
     public void drawPath(Graphics g)
     {
-        ArrayList<Coordinates> path = this.getCurrentPath();
-        // TODO #2: Loop through all the (x,y) pairs in the current level's path. For each one, fill in
+        // TODO #2: Loop through all the (x,y) pairs in the path. For each one, fill in
         //  a CELL_SIZE x CELL_SIZE box centered on (x,y) in  white and draw (outline) the same box in black. To do this,
         //  you'll need the following:
         //     g.setColor(Color.NAME_OF_COLOR)
@@ -166,7 +164,7 @@ public class World
     }
 
     /**
-     * tell all the shots to draw themselves. Afterwards, if any of the shots have been drawn twice, (i.e., multiple
+     * tell all the shots to draw themselves. Afterward, if any of the shots have been drawn twice, (i.e., multiple
      * cycles of this method), delete them from the shot list. (Note that Shot has an accessor Method, getShotsDrawn().)
      * @param g - the Graphics object that indicates where on the screen to draw and the tools to do it.
      */
@@ -213,7 +211,7 @@ public class World
         //      range.
         // TODO #7: loop through all the turrets and tell each one to advance(deltaT) and target the nearest invader,
         //    (which will also fire at it, if possible).
-        //    NOTE: the targetting won't work until you do To do #7.
+        //    NOTE: the targeting won't work until you do To do #7.
 
 
 

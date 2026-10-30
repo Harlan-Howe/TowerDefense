@@ -71,7 +71,7 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
             // Rounding to centered multiples of World.CELL_SIZE.
             int destX = World.CELL_SIZE/2 + (e.getX()/ World.CELL_SIZE)*World.CELL_SIZE;
             int destY = World.CELL_SIZE/2 + (e.getY()/ World.CELL_SIZE)*World.CELL_SIZE;
-            ArrayList<Coordinates> path = myWorld.getCurrentPath();
+            ArrayList<Coordinates> path = myWorld.getPath();
             // TODO #11: Loop through the (x,y) locations in the path. If
             //       any of these (x,y) values match the destX, destY, call "myParent.overrideStatusMessage" with an
             //       explanation that you can't drop the turret here, and return from this method immediately, without
