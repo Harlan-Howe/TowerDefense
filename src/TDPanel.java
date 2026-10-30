@@ -77,6 +77,9 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
             //       explanation that you can't drop the turret here, and return from this method immediately, without
             //       adding a turret or changing the status..
 
+
+
+            // Otherwise... if to-do #11 didn't trigger...
             myWorld.addTurret(currentTurret, destX, destY);
             status = TDFrame.STATUS_WAITING;
             myParent.setStatus(TDFrame.STATUS_WAITING);
