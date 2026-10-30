@@ -4,8 +4,7 @@ import java.util.ArrayList;
 public class World
 {
     // location of the boxes' centers. Note each box is CELL_SIZE x CELL_SIZE, so they differ by CELL_SIZE.
-    private ArrayList<Coordinates> path;
-
+    private final ArrayList<Coordinates> path;
 
     private final ArrayList<Invader> invaderList;
     private final ArrayList<Turret> turretList;
@@ -29,20 +28,40 @@ public class World
     {
         myParent = parent;
         levels = new ArrayList<>();
-        loadLevels();
+        path = new ArrayList<>();
+        loadFile();
+
         invaderList = new ArrayList<Invader>();
-
         turretList = new ArrayList<Turret>();
-
         shotList = new ArrayList<Shot>();
         currentLevel = 0;
         initializeLevel();
     }
 
-    public void loadLevels()
+    public void loadFile()
     {
-        for (int i=0; i<NUM_LEVELS; i++)
-            levels.add(new Level(i));
+        //TODO # 0d: Once you have created a Coordinates class, you can activate this section of temporary code to see a few
+        // path elements onscreen. HOWEVER... this is just TEMPORARY.
+        /*
+        path.add(new Coordinates(20,380));
+        path.add(new Coordinates(60,380));
+        path.add(new Coordinates(100,380));
+        path.add(new Coordinates(100,340));
+        path.add(new Coordinates(100,300));
+        path.add(new Coordinates(100,260));
+        counts[0] = 5;
+        counts[1] = 8;
+        counts[2] = 2;
+        levels.add(new Level(0, counts));
+        */
+
+        // TODO #1: open up a file (e.g. "TowerDefense.tsv") and read in the information about the number of levels,
+        //  the starting enemy counts for each level, and the path.
+        //  SERIOUSLY: Read the google doc instructions.
+
+        // note that the number of invader types is Invader.NUM_INVADER_TYPES - I suggest you use this constant, instead
+        //     of hard-coding in "3," in case you decide to change this.
+
     }
 
     /**
@@ -72,7 +91,7 @@ public class World
 
     public ArrayList<Coordinates> getCurrentPath()
     {
-        return levels.get(currentLevel).getPath();
+        return path;
     }
 
     /**
