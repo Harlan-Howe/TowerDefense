@@ -28,7 +28,7 @@ public class Shot
         /*
         g.setStroke(shotThickLine);
         g.setColor(myColor);
-        g.drawLine(pt1[0],pt1[1],pt2[0],pt2[1]);
+        g.drawLine(pt1.getX(),pt1.getY(),pt2.getX(),pt2.getY());
         g.setStroke(thinLine);
          */
         framesDrawn++;
