@@ -51,6 +51,11 @@ public class TDPanel extends JPanel implements MouseListener, MouseMotionListene
         myParent.addCash(Invader.REWARDS[type]);
     }
 
+    public void overrideMessage(String s)
+    {
+        myParent.overrideStatusMessage(s);
+    }
+
     @Override
     public void mouseClicked(MouseEvent e)
     {
